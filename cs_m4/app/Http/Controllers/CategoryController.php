@@ -23,7 +23,7 @@ class CategoryController extends Controller
     }
     public function edit($id){
         $cate= Category::find($id);
-        return view('categories.edit',compact('categories'));
+        return view('categories.edit',compact('cate')).$id;
     }
     public function update(Request $request, $id){
         $cate = Category::find($id);
