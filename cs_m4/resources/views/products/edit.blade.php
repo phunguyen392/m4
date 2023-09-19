@@ -20,10 +20,12 @@
     <p>
         <label for="category_id">Category:<br></label>
         <select name="category_id" style="width: 177px;">
-    @foreach ($categories as $category)
-        <option value="{{ $category->id }}">{{ $category->category_name }}</option>
-    @endforeach
-</select>
+            @foreach ($categories as $category)
+            <option value="{{ $category->id }}" {{ $category->id == $product->category_id ? 'selected' : '' }}>
+                {{ $category->category_name }}
+            </option>
+            @endforeach
+        </select>
         <br><br>
     </p>
     <p>

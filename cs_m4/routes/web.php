@@ -27,6 +27,7 @@ Route::get('/category/create',[CategoryController::class,'create'])->name('categ
 Route::post('/category/store',[CategoryController::class,'store'])->name('categories.store');
 Route::put('/category/update/{id}',[CategoryController::class,'update'])->name('categories.update');
 Route::get('category/edit/{id}',[CategoryController::class,'edit'])->name('categories.edit');
+Route::get('category/show',[CategoryController::class,'show'])->name('categories.show');
 
 //route cua product
 Route::get('/product',[ProductController::class, 'index'])->name('products.index');
@@ -44,3 +45,9 @@ Route::delete('product/{id}', [ProductController::class,'delete'])->name('produc
 //     return 'casdsaddasd';
 // })
 // ->middleware('checksochan');
+Route::get('/layout', function () {
+    return view('demo.layout');
+});
+Route::get('/layout1', function () {
+    return view('demo.layout1');
+});

@@ -9,18 +9,29 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-            $products = Product::get();
+        $productsQuery = Product::join('categories', 'products.category_id', '=', 'categories.id')
+        ->select('products.*', 'categories.category_name');
     
-        return view('products.index', compact('products'));
+    if (isset($request->keyword)) {
+        $keyword = $request->keyword;
+        $products = $productsQuery->where('products.name', 'like', '%' . $keyword . '%')->paginate(7);
+    } else {
+        $products = $productsQuery->paginate(7);
     }
+    
+    return view('products.index', compact('products'));
+}
 
-    public function create(){
+
+    public function create()
+    {
         $categories = Category::get();
-        return view('products.create',compact('categories'));
+        return view('products.create', compact('categories'));
     }
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $product = new Product();
         $product->name = $request->name;
         $product->quantity = $request->quantity;
@@ -35,18 +46,20 @@ class ProductController extends Controller
             // Đường dẫn đến hình ảnh lưu trong cơ sở dữ liệu
             $product->image = 'images/' . $filename;
         }
-        $product->category_id  = $request->category_id ;
+        $product->category_id  = $request->category_id;
         $product->status = $request->status;
         $product->save();
         return redirect()->route('products.index');
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $product = Product::find($id);
         $categories = Category::get();
-        return view('products.edit',compact('product','categories')).$id;
+        return view('products.edit', compact('product', 'categories')) . $id;
     }
-    public function update(Request $request,$id){
+    public function update(Request $request, $id)
+    {
         $product = Product::find($id);
         $product->name = $request->name;
         $product->quantity = $request->quantity;
@@ -66,12 +79,13 @@ class ProductController extends Controller
                 Storage::delete('public/' . $oldImage);
             }
         }
-        $product->category_id  = $request->category_id ;
+        $product->category_id  = $request->category_id;
         $product->status = $request->status;
         $product->save();
         return redirect()->route('products.index');
     }
-    public function delete($id){
+    public function delete($id)
+    {
         Product::destroy($id);
         return redirect()->route('products.index');
     }

@@ -8,7 +8,12 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     public function index(Request $request){
-        $categories = Category::get();
+        $categories = Category::paginate(7);
+        if(isset($request->keyword)){
+            $keyword = $request->keyword;
+            $categories = Category::where('category_name', 'like', '%' . $keyword . '%')->paginate(7);
+
+        }
         return view('categories.index',compact('categories'));
     }
     public function create(){
@@ -31,5 +36,9 @@ class CategoryController extends Controller
         $cate->description = $request->description;
         $cate->save();
         return redirect()->route('categories.index');
+    }
+    public function show($id){
+        $cate= Category::find($id);
+        return view('categories.show',compact('cate'));
     }
 }
