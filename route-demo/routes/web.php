@@ -70,36 +70,36 @@ use App\Models\User;
 
 //Khởi tạo ứng dụng Task Management
 
-// Route::prefix('cm')->group(function(){
-//     Route::get('/', function(){
-//         return view('b2.th3.customer');
-//     });
-//     Route::get('/create', function(){
-//         return view('b2.th3.create');
-//     })->name('c');
-//     Route::post('/store',function(){
-//         //xu ly dl
-//     });
-//     Route::get('{id}', function(){
-//         //hien thi thong tin chi tiet task
-//     });
-//     Route::get('{id}/edit',function(){
-//         //hien thi form chinh sua
-//     });
-//     Route::get('{id}/update',function(){
-//         //cap nhat task
-//     });
-//     Route::get('/{id}/delete', function(){
-//         //xoa task
-//     });
-// });
-// Route::get('/index',function(){
-//     return view('b2.th3.index');
+Route::prefix('cm')->group(function(){
+    Route::get('/', function(){
+        return view('b2.th3.customer');
+    });
+    Route::get('/create', function(){
+        return view('b2.th3.create');
+    })->name('c');
+    Route::post('/store',function(){
+        //xu ly dl
+    });
+    Route::get('{id}', function(){
+        //hien thi thong tin chi tiet task
+    });
+    Route::get('{id}/edit',function(){
+        //hien thi form chinh sua
+    });
+    Route::get('{id}/update',function(){
+        //cap nhat task
+    });
+    Route::get('/{id}/delete', function(){
+        //xoa task
+    });
+});
+Route::get('/index',function(){
+    return view('b2.th3.index');
     
-// });
-// Route::get('/customer',function(){
-//     return view('b2.th3.customer');
-// });
+});
+Route::get('/customer',function(){
+    return view('b2.th3.customer');
+});
 
 
 // Route::get('/customer/create',[CustomerController::class, 'create'])->name('customer.create');
@@ -110,7 +110,7 @@ use App\Models\User;
 
 //b3/th1/validate-email
 
-// Route::get('/',[EmailController::class,'index']);
+Route::get('/',[EmailController::class,'index']);
 
 Route::get('/user',[UserController::class, 'index'])->name('user.index');
 Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
@@ -121,4 +121,6 @@ Route::delete('/user/{id}', [UserController::class, 'delete'])->name('user.destr
 Route::get('/user/show/{id}', [UserController::class, 'show'])->name('user.show');
 
 //vd ve controller resource
-Route::resource('user/', NdController::class);
+Route::resource('nds/', NdController::class);
+Route::resource('category/', NdController::class);
+

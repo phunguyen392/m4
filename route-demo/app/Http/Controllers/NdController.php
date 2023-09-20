@@ -11,7 +11,7 @@ class NdController extends Controller
      */
     public function index()
     {
-        //
+        return view("b3.nds.index");
     }
 
     /**

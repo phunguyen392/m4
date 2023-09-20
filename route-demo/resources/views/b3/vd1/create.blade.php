@@ -1,4 +1,4 @@
-<form action="{{route('user.store')}}" method="post">
+<form action="{{route('user.store')}}" method="post" enctype="multipart/form-data">
     @csrf
     <h1>Form dang nhap</h1>
     <p>
@@ -16,7 +16,10 @@
     <label >Mật khẩu:</label><br>
     <input name="password" type="password" value=""><br>
 </p>
-    
+    <p>
+        <label>Anh:</label><br>
+        <input type="file" name="image">
+    </p>
 
-    <input type="submit" name="submit" value="Đăng Nhập" />
+    <input type="submit" name="submit" value="Add" />
 </form>
