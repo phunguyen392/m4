@@ -31,7 +31,7 @@
             </form>
         </div>
         <div>
-            <a href="{{route('categories.create')}}" class="btn btn-outline-primary ">New Add</a>
+            <a href="{{route('products.create')}}" class="btn btn-outline-primary ">New Add</a>
         </div>
         <div class="row">
             <div class="col-12">
@@ -105,7 +105,7 @@
                                         </td>
                                         <td class="align-middle text-center">
                                             <div class="btn-group">
-                                            <a href="{{ route('products.edit', ['id' => $product->id]) }}" class="btn btn-outline-success">Show</a>
+                                            <a href="{{ route('products.show', ['id' => $product->id]) }}" class="btn btn-success">Show</a>
                                               
                                             <a href="{{ route('products.edit', ['id' => $product->id]) }}" class="btn btn-outline-primary">Edit</a>
                                                 <form action="{{ route('product.destroy', ['id' => $product->id]) }}" method="POST">

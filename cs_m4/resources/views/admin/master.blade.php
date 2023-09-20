@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,38 +12,36 @@
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
   <!-- Nucleo Icons -->
-  <link href="{{('assets/css/nucleo-icons.css" rel="stylesheet')}}" />
-  <link href="{{('assets/css/nucleo-svg.css" rel="stylesheet')}}" />
+  <link href="{{ asset('assets/css/nucleo-icons.css') }}" rel="stylesheet" />
+  <link href="{{ asset('assets/css/nucleo-svg.css') }}" rel="stylesheet" />
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <!-- Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <!-- CSS Files -->
-  <link id="pagestyle" href="{{('assets/css/material-dashboard.css?v=3.1.0')}}" rel="stylesheet" />
+  <link id="pagestyle" href="{{ asset('assets/css/material-dashboard.css?v=3.1.0') }}" rel="stylesheet" />
   <!-- Nepcha Analytics (nepcha.com) -->
   <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
 </head>
 
-<body class="g-sidenav-show  bg-gray-200">
+<body class="g-sidenav-show bg-gray-200">
   @include('admin.includes.sidebar')
-  <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+  <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
     <!-- Navbar -->
-   @include('admin.includes.header')
+    @include('admin.includes.header')
     <!-- End Navbar -->
     <div class="container-fluid py-4">
-
-    @yield('content')
-     
-    @include('admin.includes.footer')
+      @yield('content')
+      @include('admin.includes.footer')
     </div>
   </main>
- 
-  <!--   Core JS Files   -->
-  <script src="{{('assets/js/core/popper.min.js')}}"></script>
-  <script src="{{('assets/js/core/bootstrap.min.js')}}"></script>
-  <script src="{{('assets/js/plugins/perfect-scrollbar.min.js')}}"></script>
-  <script src="{{('assets/js/plugins/smooth-scrollbar.min.js')}}"></script>
+
+  <!-- Core JS Files -->
+  <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
+  <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
+  <script src="{{ asset('assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -57,7 +54,7 @@
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="{{('assets/js/material-dashboard.min.js?v=3.1.0')}}"></script>
+  <script src="{{ asset('assets/js/material-dashboard.min.js?v=3.1.0') }}"></script>
 </body>
 
 </html>

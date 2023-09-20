@@ -40,7 +40,7 @@
                                 <tr class="text-center">
                                     <th>Id</th>
                                     <th>Category Name</th>
-                                    <th>Description</th>
+                                    <!-- <th>Description</th> -->
                                     <th>Action</th>
                                 </tr>
                                 @foreach ($categories as $key => $cate)
@@ -56,25 +56,25 @@
                                             </div>
                                             <div class="d-flex flex-column justify-content-center">
                                                 <h6 class="mb-0 text-sm"></h6>
-                                                <p class="text-xs text-secondary mb-0">ntpccn@gmail.com</p>
+                                                <!-- <p class="text-xs text-secondary mb-0">ntpccn@gmail.com</p> -->
                                             </div>
                                         </div>
                                     </td>
                                     <td class="col-md-2 col-sm-6">
 
-                                        <span class="badge badge-sm bg-gradient-success" style="width: 60%;">{{$cate->category_name}}</span>
+                                        <span class="badge badge-sm bg-gradient-success" style="width: 100%;height:20%">{{$cate->category_name}}</span>
 
                                         <p class="text-xs font-weight-bold mb-0"></p>
                                     </td>
-                                    <td class="align-middle text-center text-sm">
+                                    <!-- <td class="align-middle text-center text-sm">
                                         {{$cate->description}}<br>
 
-                                        <span class="badge badge-sm bg-gradient-success" >   <a href="{{ route('categories.show', ['id' => $cate->id]) }}" >Show</a></span>
-                                    </td>
+                                        <span class="badge badge-sm bg-gradient-success" >   </span>
+                                    </td> -->
                                     <td class="align-middle text-center">
                                         <a href="{{ route('categories.edit', ['id' => $cate->id]) }}" class="btn btn-outline-primary">Edit</a>
                                         <a href="{{ route('categories.edit', ['id' => $cate->id]) }}" class="btn btn-outline-danger">Delete</a>
-
+                                        <a href="{{ route('categories.show', ['id' => $cate->id]) }}" ><button class="btn btn-outline-success">Show</button></a>
                                     </td>
 
                                 </tr>

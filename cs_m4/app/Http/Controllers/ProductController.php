@@ -11,14 +11,14 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $productsQuery = Product::join('categories', 'products.category_id', '=', 'categories.id')
+        $products1 = Product::join('categories', 'products.category_id', '=', 'categories.id')
         ->select('products.*', 'categories.category_name');
     
     if (isset($request->keyword)) {
         $keyword = $request->keyword;
-        $products = $productsQuery->where('products.name', 'like', '%' . $keyword . '%')->paginate(7);
+        $products = $products1->where('products.name', 'like', '%' . $keyword . '%')->paginate(7);
     } else {
-        $products = $productsQuery->paginate(7);
+        $products = $products1->paginate(7);
     }
     
     return view('products.index', compact('products'));
@@ -88,5 +88,10 @@ class ProductController extends Controller
     {
         Product::destroy($id);
         return redirect()->route('products.index');
+    }
+
+    public function show($id){
+        $product = Product::find($id);
+        return view('products.show', compact('product'));
     }
 }

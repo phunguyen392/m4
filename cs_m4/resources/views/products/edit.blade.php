@@ -1,3 +1,5 @@
+@extends('admin.master')
+@section('content')
 <form action="<?php echo route('products.update', $product->id) ?>" method="post" enctype="multipart/form-data">
     @csrf
     @method('PUT')
@@ -34,3 +36,4 @@
     </p>
     <input type="submit" value="Update">
 </form>
+@endsection
