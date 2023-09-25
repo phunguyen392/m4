@@ -10,10 +10,12 @@ class Order extends Model
     use HasFactory;
     protected $table = 'orders';
     protected $fillable = [
-        'customer_name',
-        'order_date',
-        'total_amount'
+        'customer_id',
+        'date_at',
+        'date_ship',
+        'note',
+        'total'
 
     ];
-    public $timestamps = false;
+    public $timestamps = true;
 }

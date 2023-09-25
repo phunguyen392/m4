@@ -88,10 +88,15 @@
 
         </tbody>
     </table>
+
     <div class="pagination justify-content-center">
         <!-- Hiển thị liên kết phân trang với Bootstrap -->
         {{$users->links('pagination::bootstrap-4')}}
-    </div>
+      
 </body>
 
 </html>
+<div class="embed-responsive embed-responsive-16by9">
+    <iframe class="embed-responsive-item" 
+        src="https://www.youtube.com/embed/K0MW54sM8dk" allowfullscreen></iframe>
+</div>

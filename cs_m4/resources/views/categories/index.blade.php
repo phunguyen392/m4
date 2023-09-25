@@ -11,84 +11,50 @@
 </head>
 
 <body>
-
-
-</body>
-
-</html>
-
-
-@extends('admin.master')
-@section('content')
-<div>
+    <div class="text-end">
+        <a href="{{ route('categories.create') }}"><br>
+            <button type="button" class="btn btn-info">New Add</button></a>
+    </div>
     <div>
-        <a href="{{route('categories.create')}}" class="btn btn-outline-primary ">New Add</a>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <div class="card my-4">
-                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                    <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                        <h2 class="text-white text-capitalize ps-3 text-center">Category Name</h2>
-                    </div>
-                </div>
-                <div class="card-body px-0 pb-2">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" border="1">
+            <thead>
+                <tr>
+                    <th>TT</th>
 
-                    <div class="container text-center">
-                        <table class="table align-items-center   table-hover  border-dark">
-                            <thead>
-                                <tr class="text-center">
-                                    <th>Id</th>
-                                    <th>Category Name</th>
-                                    <!-- <th>Description</th> -->
-                                    <th>Action</th>
-                                </tr>
-                                @foreach ($categories as $key => $cate)
-                            </thead>
-                            <tbody>
-                                <tr class="text-center" style="color:blueviolet;">
-                                    <td>
-                                        <span class="badge badge-sm bg-gradient-success"> {{$key+1}}</span>
+                    <th>Category Name</th>
+                    <th>Description</th>
 
-                                        <div class="d-flex px-2 py-1">
-                                            <div>
-                                                <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                            </div>
-                                            <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="mb-0 text-sm"></h6>
-                                                <!-- <p class="text-xs text-secondary mb-0">ntpccn@gmail.com</p> -->
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="col-md-2 col-sm-6">
+                    <th>Action</th>
 
-                                        <span class="badge badge-sm bg-gradient-success" style="width: 100%;height:20%">{{$cate->category_name}}</span>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($categories as $key=>$cate )
 
-                                        <p class="text-xs font-weight-bold mb-0"></p>
-                                    </td>
-                                    <!-- <td class="align-middle text-center text-sm">
-                                        {{$cate->description}}<br>
+                <tr>
+                    <td>{{$key+1}}</td>
+                    <td>{{$cate->category_name}}</td>
+                    <td>{{$cate->description}}</td>
+                    <td>
+                        <div class="d-flex">
+                            <form>
 
-                                        <span class="badge badge-sm bg-gradient-success" >   </span>
-                                    </td> -->
-                                    <td class="align-middle text-center">
-                                        <a href="{{ route('categories.edit', ['id' => $cate->id]) }}" class="btn btn-outline-primary">Edit</a>
-                                        <a href="{{ route('categories.edit', ['id' => $cate->id]) }}" class="btn btn-outline-danger">Delete</a>
-                                        <a href="{{ route('categories.show', ['id' => $cate->id]) }}" ><button class="btn btn-outline-success">Show</button></a>
-                                    </td>
+                                <a href="{{ route('categories.edit', ['category' => $cate->id]) }}" class="btn btn-primary">Edit</a>
+                            </form>
 
-                                </tr>
-                                @endforeach
-
-                            </tbody>
-                        </table><br>
-                        {{$categories->links()}}
-                    </div>
-                </div>
-            </div>
+                            <form action="{{ route('categories.destroy', ['category' => $cate->id]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                            <a href="{{ route('categories.show', ['category' => $cate->id]) }}" class="btn btn-success">Show</a>
+                        </div>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
         </div>
-    </div>
-</div>
-
-
-@endsection()
+        {{$categories->links()}}
+    </body>
+    
+    </html>

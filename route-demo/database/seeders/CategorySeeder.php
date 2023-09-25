@@ -1,7 +1,6 @@
 <?php
 
 namespace Database\Seeders;
-
 use App\Models\Category;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -14,8 +13,8 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         $cate = new Category();
-        $cate->name = 'dau bung';
-        $cate->description = 'de uong khi dau bung';
+        $cate->name = 'bcd';
+        $cate->delete_at = '2023-08-09';
         $cate->save();
     }
 }

@@ -11,8 +11,14 @@ class Category extends Model
     protected $table = 'categories';
     protected $fillable = [
         'name',
-        'description'
+        'delete_at'
     ];
-    public $timestamps = false;
+    public $timestamps = true;
     protected $primarykey = 'id';
+    public function product()
+    {
+        return $this->hasMany(Product::class, 'category_id', 'id');
+    }
+
 } 
+
