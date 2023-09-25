@@ -19,4 +19,8 @@ class Product extends Model
 
     ];
     public $timestamp = true;
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
 }
