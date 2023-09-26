@@ -3,6 +3,11 @@
 namespace Database\Seeders;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Role;
+use App\Models\Group;
+use App\Models\GroupRole;
+
+
 
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -23,6 +28,10 @@ class DatabaseSeeder extends Seeder
         // ]);
     $this->call(CategorySeeder::class);
     $this->call(ProductSeeder::class);
+    $this->call(RoleSeeder::class);
+    $this->call(GroupSeeder::class);
+    $this->call(GroupRoleSeeder::class);
+
 
     }
 }

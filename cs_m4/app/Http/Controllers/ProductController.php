@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Product;
 use App\Models\Category;
+use Illuminate\Support\Facades\Session;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ProductRequest;
+
 
 class ProductController extends Controller
 {
@@ -14,16 +17,28 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
+             //them trang thai thanh cong cac kieu
+             $successMessage = '';
+             if ($request->session()->has('successMessage')) {
+                 $successMessage = $request->session()->get('successMessage');
+             } elseif ($request->session()->has('successMessage1')) {
+                 $successMessage = $request->session()->get('successMessage1');
+             } elseif ($request->session()->has('successMessage2')) {
+                 $successMessage = $request->session()->get('successMessage2');
+             }
+            //
         $products = Product::with('category');
     
         if ($request->has('keyword')) {
             $keyword = $request->keyword;
-            $products->where('product_name', 'like', '%' . $keyword . '%');
+            $products->where('product_name', 'like', '%' . $keyword . '%')
+             ->orwhere('status', 'like', '%' . $keyword . '%');
         }
     
         $products = $products->paginate(3);
     
-        return view('products.index', compact('products'));
+        return view('admin/products/index', compact('products','successMessage'));
+        
     }
 
     /**
@@ -32,13 +47,13 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::get();
-        return view('products.create',compact('categories'));
+        return view('admin/products/create',compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
        
             $pro = new Product();
@@ -60,7 +75,10 @@ class ProductController extends Controller
             }
            
             $pro->save();
+        $request->session()->flash('successMessage', 'Create success');
+
             return redirect()->route('products.index');
+
     }
 
     /**
@@ -68,7 +86,8 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $pro= Product::find($id);
+        return view('admin.products.show',compact('pro'));
     }
 
     /**
@@ -78,13 +97,13 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $categories = Category::get();
-        return view('products.edit', compact('product', 'categories')) . $id;
+        return view('admin/products/edit', compact('product', 'categories')) . $id;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ProductRequest $request, string $id)
     {
         $product = Product::find($id);
         $product->product_name = $request->product_name;
@@ -109,14 +128,19 @@ class ProductController extends Controller
         }
         $product->status = $request->status;
         $product->save();
+        $request->session()->flash('successMessage1', 'Edit success');
+
         return redirect()->route('products.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $pro = Product::destroy($id);
+        $request->session()->flash('successMessage2', 'Delete success');
+        return redirect()->route('products.index');
+
     }
 }

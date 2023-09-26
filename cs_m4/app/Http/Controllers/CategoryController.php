@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\CategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -12,7 +13,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::paginate(3);
-        return view('categories.index',compact('categories'));
+        return view('admin/categories/index',compact('categories'));
     }
 
     /**
@@ -20,14 +21,14 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('categories.create');
+        return view('admin/categories/create');
 
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
         $cate = new Category();
         $cate->category_name = $request->category_name;
@@ -42,7 +43,7 @@ class CategoryController extends Controller
     public function show(string $id)
     {
         $cate= Category::find($id);
-        return view('categories.show',compact('cate'));
+        return view('admin.categories.show',compact('cate'));
     }
 
     /**
@@ -51,12 +52,12 @@ class CategoryController extends Controller
     public function edit(string $id)
     {
         $cate= Category::find($id);
-        return view('categories.edit',compact('cate')).$id;    }
+        return view('admin/categories/edit',compact('cate')).$id;    }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CategoryRequest $request, string $id)
     {
         $cate = Category::find($id);
         $cate->category_name = $request->category_name;

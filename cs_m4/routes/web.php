@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/b', function () {
-    return view('welcome');
+    return view('admin. master');
 });
 Route::resource('categories',CategoryController::class);
 Route::resource('products',ProductController::class);
