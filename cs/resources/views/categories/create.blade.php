@@ -32,6 +32,10 @@
                 <p>
                     <label for="cate">Category Name:</label><br>
                     <input type="text" name="category_name" id="cate" class="form-control">
+                    @error('category_name')
+                                    <div style="color: red">{{ $message }}</div>
+                                @enderror
+                                            
                 </p>
                 <p>
                     <label for="des">Description:</label><br>

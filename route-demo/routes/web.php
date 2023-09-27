@@ -8,6 +8,8 @@ use App\Http\Controllers\EmailController;
 use App\Http\Controllers\NdController;
 use App\Http\Controllers\UserController;
 use App\Models\User;
+use App\Http\Controllers\AuthController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -123,4 +125,11 @@ Route::get('/user/show/{id}', [UserController::class, 'show'])->name('user.show'
 //vd ve controller resource
 Route::resource('nds/', NdController::class);
 Route::resource('category/', NdController::class);
+
+
+Route::get('/login', [AuthController::class, 'showLoginForm']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/welcome', [AuthController::class, 'welcome']);
+Route::get('/logout', [AuthController::class, 'logout']);
+Route::get('/regenerate', [AuthController::class, 'regenerateSession']);
 

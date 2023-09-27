@@ -44,11 +44,15 @@
                     <option value="{{ $category->category_id }}">{{ $category->category_name }}</option>
                     @endforeach
                 </select>
-                <br><br>
             </p>
             <p>
-                <label>Status:<br></label>
-                <input type="text" name="status">
+                <label for="status">Status:<br></label>
+                <select name="status" style="width:177px;">
+                    <option value="0">het hang</option>
+                    <option value="1">con hang</option>
+
+                    @endforeach
+                </select>
             </p>
             <input type="submit" value="New Add">
         </form>
