@@ -35,7 +35,7 @@ class ProductController extends Controller
              ->orwhere('status', 'like', '%' . $keyword . '%');
         }
     
-        $products = $products->paginate(3);
+        $products = $products->orderby('id','desc')->paginate(3);
     
         return view('admin/products/index', compact('products','successMessage'));
         
