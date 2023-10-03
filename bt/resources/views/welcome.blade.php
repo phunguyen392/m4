@@ -14,6 +14,7 @@
         <br>
         <a href="/regenerate">Tạo lại ID phiên</a>
     @else
+    <p>Rất chào mừng sắp đến với trang web</p>
         <p>Vui lòng đăng nhập để tiếp tục.</p>
         <a href="/login">Đăng nhập</a>
     @endif

@@ -133,3 +133,8 @@ Route::get('/welcome', [AuthController::class, 'welcome']);
 Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/regenerate', [AuthController::class, 'regenerateSession']);
 
+
+
+
+
+

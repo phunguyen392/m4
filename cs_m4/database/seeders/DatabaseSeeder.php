@@ -6,6 +6,8 @@ use App\Models\Product;
 use App\Models\Role;
 use App\Models\Group;
 use App\Models\GroupRole;
+use App\Models\User;
+
 
 
 
@@ -31,6 +33,7 @@ class DatabaseSeeder extends Seeder
     $this->call(RoleSeeder::class);
     $this->call(GroupSeeder::class);
     $this->call(GroupRoleSeeder::class);
+    $this->call(UserSeeder::class);
 
 
     }
